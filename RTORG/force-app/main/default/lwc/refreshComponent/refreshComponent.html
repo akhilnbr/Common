@@ -1,0 +1,35 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
+        <thead>
+        <tr class="slds-line-height_reset">
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Account Name">Account Name</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Close Date">Close Date</div>
+        </th>
+        <th class="" scope="col">
+        <div class="slds-truncate" title="Stage">Stage</div>
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+        <template for:each={record} for:item="accoount" >
+            <tr class="slds-hint-parent" key={accoount}>
+                <th data-label="Opportunity Name" scope="row">
+                <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                <a href="#" tabindex="-1">{accoount.Id}</a>
+                </div>
+                </th>
+                <td data-label="Account Name">
+                <div class="slds-truncate" title="Cloudhub">{accoount.Website}</div>
+                </td>
+                </tr>
+        </template>
+        </tbody>
+        </table>
+        <button class="slds-button slds-button_brand" onclick={updateWebSite}>UPDATE REFRESH</button>
+</template>
