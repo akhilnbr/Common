@@ -1,0 +1,95 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+              <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Clear Storage">
+                  <span>Clear Storage</span>
+                </a>
+              </h2>
+            </div>
+            <div class="slds-no-flex">
+              <button class="slds-button slds-button_brand" onclick={doStorageClear}  >Start</button>
+            </div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+          <template if:true={completed}>
+            <template for:each={jobList} for:item="job">
+                <div key={job} class="completedjob">
+                  <table class="slds-table slds-table_cell-buffer slds-table_header-hidden color slds-no-row-hover" aria-label=" Example headless table of Opportunities with no borders " style="background-color: green;">
+                    <tbody>
+                    <tr class="slds-hint-parent">
+                    <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">{job.object}</div>
+                    </td>
+                    <td data-label="Close Date">
+                    <div class="slds-truncate" title="4/14/2015">{job.JobItemsProcessed}</div>
+                    </td>
+                    <td data-label="Prospecting">
+                    <div class="slds-truncate" title="Prospecting">{job.TotalJobItems}</div>
+                    </td>
+                    <td data-label="Confidence">
+                    <div class="slds-truncate" title="20%">{job.status}</div>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </template>
+          </template>
+          <template if:true={ongoing}>
+            <div class="ongoing">
+              <table class="slds-table slds-table_cell-buffer slds-table_header-hidden color slds-no-row-hover" aria-label=" Example headless table of Opportunities with no borders " style="background-color: rgb(255 212 0);">
+                <tbody>
+                <tr class="slds-hint-parent">
+                <td data-label="Account Name">
+                <div class="slds-truncate" title="Cloudhub">{objectName}</div>
+                </td>
+                <td data-label="Prospecting">
+                <div class="slds-truncate" title="Prospecting">{totalJobs}</div>
+                </td>
+                <td data-label="Close Date">
+                <div class="slds-truncate" title="4/14/2015">{completedJobs}</div>
+                </td>
+                <td data-label="Confidence">
+                <div class="slds-truncate" title="20%">{status}</div>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+          </template>
+        </div>
+        <!-- <div class="slds-card__body slds-card__body_inner">Anything can go into the card body</div> -->
+    </article>
+    <!--modal popup for select object-->
+    <template if:true={showpopup}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closemodal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" title="close"></lightning-icon>
+                </button>
+              <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Select object to clear storage</h1>
+              </div>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-checkbox-group name="Checkbox Group"
+                              options={options}
+                              value={value}
+                              onchange={handleChange}></lightning-checkbox-group>
+              </div>
+              <div class="slds-modal__footer">
+                <button class="slds-button slds-button_brand" onclick={startClearingStorage}>clear</button>
+              </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    
+</template>
