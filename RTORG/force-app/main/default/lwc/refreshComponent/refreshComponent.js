@@ -23,24 +23,5 @@ export default class RefreshComponent extends LightningElement {
     }
 
 
-    updateWebSite(e){
-        
-        updateAccountData({accountId:'0015g00000HtMnxAAF'}).then(()=>{
-
-             refreshApex(this.wiredResult);
-            //refreshthe apex starts here
-            // const {datas,error} = data
-            // if(datas){
-            //     console.log('=====',datas)
-               
-            // }
-            // else if(error){
-            //     console.log('=======')
-            // }
-            
-
-        })
-    }
-
     
 }

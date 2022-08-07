@@ -1,0 +1,55 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+              <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-account" title="account">
+                  <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                    <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Hybrid Cart</span>
+                </span>
+              </div>
+              <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                  <a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+                    <span>Hybrid Cart</span>
+                  </a>
+                </h2>
+              </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner maincontainer">
+          <div class="searchcontainer">
+            <div class="search">
+              <lightning-input  name="enter-search" label="" type="search" onchange={searchRecord}></lightning-input>
+            </div>
+            <div class="listview">
+              <template for:each={dataCollection} for:item="data">
+                <div key={keys} class="item">
+                  {data}
+                  <lightning-button variant="brand" label="Add to cart" title="Primary action" onclick={addToCart} class="slds-m-right_small " style="float:right;" data-key={data}></lightning-button>
+                </div>
+              </template> 
+            </div>
+          </div>
+          <div class="child2">
+            <template for:each={cartStorage} for:item="cartItem">
+              <div key={cartItem} class="addedItem">
+                <div class="cartitem">
+                  {cartItem}
+                </div>
+                <div class="tools">
+                  <lightning-button-icon icon-name="utility:add"   variant="brand" alternative-text="Add user" class="slds-m-left_xx-small" title="Add user" onclick={performAction} data-action="incrementCount" data-key={cartItem}></lightning-button-icon>
+                  <!--Add the input text-->
+                  <lightning-input type="number" name="input1" class="numberinput slds-m-left_xx-small" data-input={cartItem} value={defaultCount}></lightning-input>
+                  <lightning-button-icon icon-name="utility:dash"   variant="brand" alternative-text="Add user" class="slds-m-left_xx-small" title="Add user" onclick={performAction} data-action="decrementCount" data-key={cartItem}></lightning-button-icon>
+                  <lightning-button-icon icon-name="utility:delete"    variant="brand" alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" data-key={cartItem} data-action="removefromcart" onclick={performAction}></lightning-button-icon>
+                </div>
+              </div>
+            </template> 
+          </div>
+        </div>
+          <footer class="slds-card__footer"></footer>
+    </article>
+</template>
