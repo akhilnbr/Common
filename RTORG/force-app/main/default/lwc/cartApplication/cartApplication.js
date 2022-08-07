@@ -10,6 +10,7 @@ export default class CartApplication extends LightningElement {
     cartStorage = [];
     tempStorage = [];
     defaultCount= 1;
+    isItemAdded = false;
     
     getData(){
        
@@ -56,11 +57,8 @@ export default class CartApplication extends LightningElement {
         this.dataCollection.reduce(x=>x == e.currentTarget.dataset.key)
         this.cartStorage = [];
         this.cartStorage = this.tempStorage;
+        this.isItemAdded = true;
         this.template.querySelector(`[data-input="${e.currentTarget.dataset.key}"]`).value = 1;
-        console.log('element',element);
-        //element.setAttribute('value',1);
-        console.log(choosenItem);
-
     }
 
     performAction(e){
@@ -74,12 +72,15 @@ export default class CartApplication extends LightningElement {
                 element.value =parseInt(element.value)+1;
             break;
             case 'removefromcart':
-                
-                const tempStorage = this.cartStorage.filter(x=>x!=targetKey);
-                console.log('tempStorage',tempStorage);
+                console.log('======');
+                const index = this.cartStorage.indexOf(targetKey);
+                this.cartStorage.splice(index,1);
+                const temp = this.cartStorage;
                 this.cartStorage = [];
-                this.cartStorage = tempStorage;
-                //c/cartApplication
+                this.cartStorage  = temp;
+
+                if(this.cartStorage.length==0)
+                    this.isItemAdded = false;
             break;
             case 'decrementCount':
                 if(element.value==1)

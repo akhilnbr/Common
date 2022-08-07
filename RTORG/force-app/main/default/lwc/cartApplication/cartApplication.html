@@ -44,12 +44,26 @@
                   <!--Add the input text-->
                   <lightning-input type="number" name="input1" class="numberinput slds-m-left_xx-small" data-input={cartItem} value={defaultCount}></lightning-input>
                   <lightning-button-icon icon-name="utility:dash"   variant="brand" alternative-text="Add user" class="slds-m-left_xx-small" title="Add user" onclick={performAction} data-action="decrementCount" data-key={cartItem}></lightning-button-icon>
-                  <lightning-button-icon icon-name="utility:delete"    variant="brand" alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" data-key={cartItem} data-action="removefromcart" onclick={performAction}></lightning-button-icon>
+                  <lightning-button-icon icon-name  ="utility:delete"    variant="brand" alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" data-key={cartItem} data-action="removefromcart" onclick={performAction}></lightning-button-icon>
                 </div>
               </div>
-            </template> 
+            </template>
           </div>
         </div>
-          <footer class="slds-card__footer"></footer>
+          <footer class="slds-card__footer">
+            <template if:true={isItemAdded}>
+              <div class="footerchild1">
+                ******
+              </div>
+              <div class="footerchild2">
+                <div class="total">
+                  Total Price
+                </div>
+                <div class="inprice">
+                  100
+                </div>
+              </div> 
+            </template>
+          </footer>
     </article>
 </template>
